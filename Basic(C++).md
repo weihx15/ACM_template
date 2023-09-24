@@ -20,6 +20,7 @@ const int dx[8] = {0, 0, 1, -1, 1, 1, -1, -1}, dy[8] = {1, -1, 0, 0, 1, -1, 1, -
 #define endl "\n"
 #define len(a) (a).size()
 #define gcd(a, b) __gcd((a), (b))
+#define all(a) (a).begin(), (a).end()
 #define lcm(a, b) (a) / gcd(a, b) * (b)
 #define mst(a, b) memset(a, b, sizeof a)
 #define debug(a) cout << #a << " = " << a << "\n"
