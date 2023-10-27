@@ -73,6 +73,26 @@ $\displaystyle \gcd(ka,kb)=k\,\gcd(a,b)$
 $\displaystyle \gcd(a,b,c)=\gcd(\gcd(a,b),c)$
 $\displaystyle \gcd(k,ab)=1\Longleftrightarrow\gcd(k,a)=1\,\&\&\,\gcd(k,b)=1$
 
+```c++
+int gcd(int a, int b)
+{
+    if (a == b)
+        return a;
+    if ((a & 1) == 0 && (b & 1) == 0)
+        return gcd(a >> 1, b >> 1) << 1;
+    else if ((a & 1) == 0 && (b & 1) != 0)
+        return gcd(a >> 1, b);
+    else if ((a & 1) != 0 && (b & 1) == 0)
+        return gcd(a, b >> 1);
+    else
+    {
+        int big = a > b ? a : b;
+        int small = a < b ? a : b;
+        return gcd(big - small, small);
+    }
+}
+```
+
 ### 最小公倍数
 
 $\displaystyle \forall a,b\in N,\gcd(a,b)\times\mathrm{lcm}(a,b)=a\times b$
