@@ -43,19 +43,22 @@ int main()
 ## 线性筛
 
 ```C++
-const int N=1e5+10;
-int vis[N];    //0表示素数，1表示非素数
-int prime[N];    //只在这个函数有作用
-void Euler_prime()  //欧拉筛法
+const int MAX_SIEVE_NUM = 1e5 + 10;
+bool is_prime[MAX_SIEVE_NUM];            // true 表示素数，false 表示非素数
+int prime[MAX_SIEVE_NUM];                // 存储素数
+void EulerPrime(int MAX = MAX_SIEVE_NUM) // 欧拉筛法
 {
-    for(int i=2;i<=N;i++)
+    mst(is_prime, true);
+    is_prime[0] = is_prime[1] = false;
+    int x = 0;
+    for (int i = 2; i <= MAX; i++)
     {
-        if(!vis[i]) prime[x++]=i;
-        for(int j=0;j<x;j++)
+        if (is_prime[i]) prime[x++] = i;
+        for (int j = 0; j < x; j++)
         {
-            if(i*prime[j]>N) break;
-            vis[i*prime[j]]=1;
-            if(i%prime[j]==0) break;
+            if (i * prime[j] > MAX) break;
+            is_prime[i * prime[j]] = false;
+            if (i % prime[j] == 0) break;
         }
     }
 }
